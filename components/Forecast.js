@@ -15,16 +15,20 @@ export default function Forecast(props) {
 
 const styles = StyleSheet.create({
     center: {
-        alignItems: 'center',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
     },
     font: {
         fontSize: 40,
         color: 'white',
         padding: 20,
+        textAlign: 'center',
     },
     font2: {
         fontSize: 20,
         color: 'white',
         padding: 20,   
-    }
+        textAlign: 'center',
+    },
 });
