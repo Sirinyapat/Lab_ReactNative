@@ -4,40 +4,27 @@ import { View, Text, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 export default function Forecast(props) {
     return (
         
-            <View style={styles.textbox}>
-                <Text style={styles.textmn}>{props.main}{"\n"}</Text>
-                <Text style={styles.textdes}>{props.description}{"\n"}</Text>
-                <Text style={styles.texttmp}>{props.temp} <Text style={styles.textc}>°C{"\n"}</Text> </Text>
+            <View style={styles.center}>
+                <Text style={styles.font}>{props.main}</Text>
+                <Text style={styles.font2}>{props.description}</Text>
+                <Text style={styles.font}>{props.temp} <Text style={styles.font2}>°C</Text> </Text>
             </View>
             
-     
     );
 }
 
 const styles = StyleSheet.create({
-
-    textbox: {
+    center: {
         alignItems: 'center',
     },
-   
-    textmn: {
-        fontSize: 51,
+    font: {
+        fontSize: 40,
         color: 'white',
+        padding: 20,
     },
-
-    textdes: {
-        fontSize: 22,
+    font2: {
+        fontSize: 20,
         color: 'white',
-    },
-    
-    texttmp: {
-        fontSize: 51,
-        color: 'white',
-    },
-    
-    textc: {
-        fontSize: 22,
-        color: 'white',
-    },
-    
+        padding: 20,   
+    }
 });
