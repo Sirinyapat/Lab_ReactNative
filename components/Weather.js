@@ -1,8 +1,10 @@
 import React, { useState , useEffect} from 'react';
-import { View, Text, ImageBackground, StyleSheet, TouchableWithoutFeedback } from 'react-native';
+import { View, Text, ImageBackground, StyleSheet, TouchableWithoutFeedback, Image } from 'react-native';
 import Forecast from './Forecast';
+import moment from 'moment';
 
 const apiKey = '6cecb9dd2e369d7e9b5d62bc682150d4'
+
 
 export default function Weather(props) {
     const [forecastInfo, setForecastInfo] = useState({
@@ -29,14 +31,17 @@ export default function Weather(props) {
                    });
            }
        }, [props.zipCode])
-   
+       const date = moment().format('MMMM Do YYYY, h:mm a');
     return (
         <View>
             <ImageBackground source={require('../bg.jpg')} style={styles.backdrop}>
-            
+    
                 <View style={styles.bg}>
+                    {/* <Image source={require('../pin.png')} /> */}
+                    <Text style={styles.date}>{date}</Text>
                     <Text style={styles.font}>Zip code is {props.zipCode}.</Text>
                     <Forecast {...forecastInfo} />
+                    
                 </View>
             
             </ImageBackground>
@@ -45,23 +50,29 @@ export default function Weather(props) {
 }
 const styles = StyleSheet.create({
     backdrop: {
-        alignItems: 'center',
         width: '100%',
         height: '100%',
     },
     bg: {
         backgroundColor: 'black',
         width: '100%',
-        height: 270,
+        height: 320,
         opacity: 0.4,
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
-        paddingTop: 25,
+        paddingTop: 30,
     },
     font: {
         textAlign: 'center',
         fontSize: 20,
         color: 'white',
+        paddingTop: 30,
+    },
+    date: {
+        textAlign: 'center',
+        fontSize: 22,
+        color: 'white',
+        
     }
 });
