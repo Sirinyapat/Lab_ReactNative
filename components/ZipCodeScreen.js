@@ -1,7 +1,8 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { View, Text, FlatList, TouchableHighlight, StyleSheet, ImageBackground } from 'react-native';
+import { View, Text, FlatList, TouchableHighlight, StyleSheet, ImageBackground, TouchableOpacity, Button} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import Icon from "react-native-vector-icons/SimpleLineIcons";
 
 
 const availableZipItems = [
@@ -13,40 +14,45 @@ const availableZipItems = [
 ]
 
 const ZipItem = ({ place, code, navigation }) => (
-    <TouchableHighlight activeOpacity={0.2}  onPress={() => navigation.navigate('Weather', { zipCode: code })}>
-        
-            
-            <View style={styles.text}> 
-                <Text style={styles.textplace}>{place}</Text> 
-                <Text style={styles.textcode}>{code}</Text> 
-            </View>
-         
-        
-    </TouchableHighlight>
-)
+    <TouchableHighlight activeOpacity={0.6} onPress={() => navigation.navigate('Weather', { zipCode: code })}>
 
+        <View style={styles.text}>
+            <Text style={styles.textplace}>{place}</Text>
+            <Text style={styles.textcode}>{code}</Text>
+        </View>
+
+    </TouchableHighlight>
+  
+)
 
 const _keyExtractor = item => item.code
 
 export default function ZipCodeScreen() {
+    
     const navigation = useNavigation()
     return (
-        <View>
+        <View style={styles.bg}>
             <ImageBackground source={require('../bg2.jpg')} style={styles.backdrop}>
-            <FlatList style = {styles.bg}
+                <FlatList 
                 data={availableZipItems}
                 keyExtractor={_keyExtractor}
                 renderItem={({ item }) => <ZipItem {...item} navigation={navigation} />}
-            />
-            <StatusBar style= {styles.tab}/>
-            </ImageBackground>
+                />
+                <Icon style={styles.icon}
+                    name="user-female"
+                    color="white"
+                    size={50}
+                    onPress={() => navigation.navigate('About me')}>
+                </Icon>
+                <Text style={styles.textabout}>about me</Text>
+                <StatusBar style={styles.tab} />
+            </ImageBackground>             
         </View>
     );
-
 }
 
 const styles = StyleSheet.create({
-   
+
     backdrop: {
         width: '100%',
         height: '100%',
@@ -67,9 +73,15 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        paddingRight: 35,
-        paddingLeft: 35,
-        paddingTop: 80,
-    }
-
-  })
+        margin: 38,
+    },
+    icon: {
+        textAlign: 'center',
+    },
+    textabout: {
+        fontSize: 20,
+        color: 'white',
+        margin: 15,
+        textAlign: 'center',
+    },
+})

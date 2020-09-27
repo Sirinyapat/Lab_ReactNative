@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 
+
 export default function Forecast(props) {
     return (
         
@@ -31,4 +32,8 @@ const styles = StyleSheet.create({
         padding: 20,   
         textAlign: 'center',
     },
+    icon: {
+        textAlign: 'center',
+        color: 'white',
+    }
 });
